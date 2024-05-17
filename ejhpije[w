@@ -1,0 +1,45 @@
+[33mcommit 9fe2917b55f1ebfc4bcd09d0229b6b819b7e8cf0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: developer1 <dev1@email.com>
+Date:   Thu May 9 16:17:12 2024 +0900
+
+    Add text edit te1 and fix btn1 handler function
+
+[1mdiff --git a/main.py b/main.py[m
+[1mindex 260ec38..0c88107 100644[m
+[1m--- a/main.py[m
+[1m+++ b/main.py[m
+[36m@@ -1,7 +1,7 @@[m
+[31m-# ch 4.2.1 main.py[m
+[32m+[m[32m# ch 4.2.4 main.py[m
+ import sys[m
+ from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QVBoxLayout,[m
+[31m-                             QMessageBox)[m
+[32m+[m[32m                             QMessageBox, QPlainTextEdit)[m
+ from PyQt5.QtGui import QIcon[m
+ [m
+ [m
+[36m@@ -12,10 +12,14 @@[m [mclass Calculator(QWidget):[m
+         self.initUI()[m
+         [m
+     def initUI(self):[m
+[32m+[m[32m        self.te1 = QPlainTextEdit()[m
+[32m+[m[32m        self.te1.setReadOnly(True)[m
+[32m+[m[41m        [m
+         self.btn1=QPushButton('Message', self)[m
+         self.btn1.clicked.connect(self.activateMessage)[m
+         [m
+         vbox=QVBoxLayout()[m
+[32m+[m[32m        vbox.addWidget(self.te1)[m
+         vbox.addStretch(1)[m
+         vbox.addWidget(self.btn1)[m
+         vbox.addStretch(1)[m
+[36m@@ -28,7 +32,8 @@[m [mclass Calculator(QWidget):[m
+         self.show()[m
+         [m
+     def activateMessage(self):[m
+[31m-        QMessageBox.information(self, "information", "Button clicked!")[m
+[32m+[m[32m        # QMessageBox.information(self, "information", "Button clicked!")[m
+[32m+[m[32m        self.te1.appendPlainText("Button clicked!")[m
+         [m
+ if __name__=='__main__':[m
+     app = QApplication(sys.argv)[m
