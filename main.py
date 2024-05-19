@@ -1,53 +1,17 @@
-# ch 4.4.1 main.py
+# ch 5.2.1 main.py
+# 애플리케이션 실행과 관련된 부분을 main 함수로 정의
+# main 함수 호출 시 view, control 인스턴스를 생성하고 프로그램 실행ㄴ
 import sys
-from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QVBoxLayout,
-                             QMessageBox, QPlainTextEdit, QHBoxLayout)
-from PyQt5.QtGui import QIcon
+from ui import View # ui.py의 View 클래스 추가
+from ctrl import Control # ctrl.py의 Control 클래스 추가
+from PyQt5.QtWidgets import QApplication
 
-
-class Calculator(QWidget):
-
-    def __init__(self):
-        super().__init__()
-        self.initUI()
-        
-    def initUI(self):
-        self.te1 = QPlainTextEdit()
-        self.te1.setReadOnly(True)
-        
-        self.btn1=QPushButton('Message', self)
-        self.btn1.clicked.connect(self.activateMessage)
-        
-        self.btn2=QPushButton('Clear', self)
-        self.btn2.clicked.connect(self.clearMessage)
-        
-        hbox = QHBoxLayout()
-        hbox.addStretch(1)
-        hbox.addWidget(self.btn1)
-        hbox.addWidget(self.btn2)
-        
-        vbox=QVBoxLayout()
-        vbox.addWidget(self.te1)
-        vbox.addStretch(1)
-        #vbox.addWidget(self.btn1)
-        vbox.addLayout(hbox)
-        vbox.addStretch(1)
-        
-        self.setLayout(vbox)
-        
-        self.setWindowTitle('Calculator')
-        self.setWindowIcon(QIcon('icon.png'))
-        self.resize(256,256)
-        self.show()
-    
-    def clearMessage(self):
-        self.te1.clear()
-        
-    def activateMessage(self):
-        # QMessageBox.information(self, "information", "Button clicked!")
-        self.te1.appendPlainText("Button clicked!")
-        
-if __name__=='__main__':
+def main(): # 프로그램 실행(Application) 관련 내용 함수화
+    calc = QApplication(sys.argv)
     app = QApplication(sys.argv)
-    view = Calculator()
+    view = View() # View 인스턴스 선언
+    Control(view=view) # Control 인스턴스 선언
     sys.exit(app.exec_())
+    
+if __name__ == '__main__':
+    main()
