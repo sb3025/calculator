@@ -1,4 +1,4 @@
-# ch 6.6.2 ctrl.py
+# ch 7.1.3 ctrl.py
 # ui에서 입력되는 이벤트 처리나 ui 동작 제어와 관련된 내용 포함
 class Control:
     
@@ -23,4 +23,16 @@ class Control:
 
     def sum(self, a, b): # 예외 처리 제거 : 향후 calculator 함수에서 처리하도록 구현 예정
             return a+b
+    
+    def sub(self, a, b):
+            return a-b
+    
+    def mul(self, a, b):
+            return a*b
+    
+    def div(self, a, b):
+         return a/b
+    
+    def pow(self, a, b):
+         return pow(a, b)
         
